@@ -1,33 +1,18 @@
 const express = require("express");
+const coffeeAddCtrls = require("../../../controller/prodcuts/coffee/coffeeAddCtr");
+const showCoffeeCtrls = require("../../../controller/prodcuts/coffee/showCoffeeCtrls");
+const showcoffeeSpecifiedCtrls = require("../../../controller/prodcuts/coffee/showSpecifiedCoffeeCtrls");
+const editCoffeeCtrls = require("../../../controller/prodcuts/coffee/editCoffeeCtrls");
+const coffeeDeleteCtrls = require("../../../controller/prodcuts/coffee/deleteCoffeeCtrls");
 const coffeeRouter = express.Router();
-coffeeRouter.get("/showcoffee", (req, res) => {
-  res.status(200).json({
-    message: "Welcome to the Coffee Shop!",
-  });
-});
+coffeeRouter.get("/showcoffee", showCoffeeCtrls);
 
-coffeeRouter.post("/addCoffee", (req, res) => {
-  const coffee = req.body;
-  res.status(201).json({
-    message: "Coffee added successfully",
-    coffee,
-  });
-});
+coffeeRouter.post("/addCoffee", coffeeAddCtrls);
 
-coffeeRouter.put("/editCoffee", (req, res) => {
-  const coffeeId = req.params.coffeeId;
-  const updatedCoffee = req.body;
-  res.status(200).json({
-    message: `Coffee with ID ${coffeeId} updated successfully`,
-    updatedCoffee,
-  });
-});
+coffeeRouter.get("/getCoffee/:name", showcoffeeSpecifiedCtrls);
 
-coffeeRouter.delete("/deleteCoffee/:coffeeId", (req, res) => {
-  const coffeeId = req.params.coffeeId;
-  res.status(200).json({
-    message: `Coffee with ID ${coffeeId} deleted successfully`,
-  });
-});
+coffeeRouter.put("/editCoffee/:name", editCoffeeCtrls);
+
+coffeeRouter.delete("/deleteCoffee/:name", coffeeDeleteCtrls);
 
 module.exports = coffeeRouter;

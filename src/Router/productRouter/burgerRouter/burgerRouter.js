@@ -6,11 +6,13 @@ const deleteBurgerCtrls = require("../../../controller/prodcuts/burgercontroller
 const burgerViewCtrls = require("../../../controller/prodcuts/burgercontroller/buregerViewCtrls");
 const burgerRouter = express.Router();
 burgerRouter.get("/showburger", burgerGetCtrls);
+
 burgerRouter.post("/putburger", burgerAddCtrl);
 
 burgerRouter.put("/editburger/:burger_name", burgerEditCtrls);
 
 burgerRouter.delete("/deleteburger/:burger_name", deleteBurgerCtrls);
+
 burgerRouter.get("/burgerview/:burger_name", burgerViewCtrls);
 
 module.exports = burgerRouter;
