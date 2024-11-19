@@ -1,33 +1,18 @@
 const express = require("express");
+const showNoodel = require("../../../controller/prodcuts/noodle/showNoodel");
+const addNoodelCtrls = require("../../../controller/prodcuts/noodle/addNoodleCtrls");
+const editNoodelCtrls = require("../../../controller/prodcuts/noodle/editNoodelCtrls");
+const noodleShowByName = require("../../../controller/prodcuts/noodle/shownoodelIdCtrls");
+const deleteNoodel = require("../../../controller/prodcuts/noodle/deleteNoodlebyname");
 const noodleRouter = express.Router();
-noodleRouter.get("/shownoodel", (req, res) => {
-  res.status(200).json({
-    message: "Welcome to the Noodle Shop!",
-  });
-});
+noodleRouter.get("/shownoodel", showNoodel);
 
-noodleRouter.post("/addnoodle", (req, res) => {
-  res.status(201).json({
-    message: "Noodle added successfully",
-  });
-});
+noodleRouter.post("/addnoodle", addNoodelCtrls);
 
-noodleRouter.get("/shownoodel/:id", (req, res) => {
-  res.status(200).json({
-    message: `Noodle with ID ${req.params.id} viewed successfully!`,
-  });
-});
+noodleRouter.get("/shownoodel/:name", noodleShowByName);
 
-noodleRouter.put("/editnoodle/:id", (req, res) => {
-  res.status(200).json({
-    message: `Noodle with ID ${req.params.id} updated successfully`,
-  });
-});
+noodleRouter.put("/editnoodle/:name", editNoodelCtrls);
 
-noodleRouter.delete("/deletenoodle/:id", (req, res) => {
-  res.status(200).json({
-    message: `Noodle with ID ${req.params.id} deleted successfully!`,
-  });
-});
+noodleRouter.delete("/deletenoodle/:name", deleteNoodel);
 
 module.exports = noodleRouter;

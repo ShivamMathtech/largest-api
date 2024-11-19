@@ -1,4 +1,5 @@
 const express = require("express");
+const addPizzaCtrls = require("../../../controller/prodcuts/pizza/addPizzaCtrls");
 const pizzaRouter = express.Router();
 
 pizzaRouter.get("/showpizza", (req, res) => {
@@ -7,12 +8,7 @@ pizzaRouter.get("/showpizza", (req, res) => {
   });
 });
 
-pizzaRouter.post("/addpizza", (req, res) => {
-  res.status(200).json({
-    message: "Pizza added successfully!",
-    pizza: req.body,
-  });
-});
+pizzaRouter.post("/addpizza", addPizzaCtrls);
 
 pizzaRouter.put("/update/:id", (req, res) => {
   res.status(200).json({
